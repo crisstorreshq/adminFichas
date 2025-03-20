@@ -14,7 +14,7 @@ const Navbar = ({ auth }) => {
           <IconButton color="inherit" size='large' onClick={() => setOpen(true)}>
             <MenuIcon/>
           </IconButton>
-          <Typography variant='h1'>Título</Typography>
+          <Typography variant='h1'>Digitalización de Fichas</Typography>
           
         </Toolbar>
       </AppBar>

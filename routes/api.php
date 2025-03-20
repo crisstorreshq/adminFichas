@@ -5,12 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FichasController;
 use App\Http\Controllers\FichaDigitalizadaController;
 
-Route::post('/agregar-pdf-ficha', [FichaDigitalizadaController::class, 'agregarPdfAFicha']);
-
-Route::post('/digitalizar-ficha', [FichaDigitalizadaController::class, 'store']);
-
-// Listado de fichas en el FTP
-Route::get('/listadoDeFichas', [FichasController::class, 'listFiles']);
-
-// Listado de pacientes con paginación y búsqueda
-Route::get('/pacientes', [FichasController::class, 'listPacientes']);
+Route::group(['middleware' => ['jwt.auth', 'check.group']], function ()
+{
+    Route::post('/agregar-pdf-ficha', [FichaDigitalizadaController::class, 'agregarPdfAFicha']);
+    Route::post('/digitalizar-ficha', [FichaDigitalizadaController::class, 'store']);
+    Route::get('/listadoDeFichas', [FichasController::class, 'listFiles']);
+    Route::get('/pacientes', [FichasController::class, 'listPacientes']);
+});

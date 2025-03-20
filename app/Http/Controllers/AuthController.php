@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -20,8 +21,14 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $cookie = cookie('auth_token', null, -1);
-        return response()->json(['message' => 'Logged out successfully'], 200)->withCookie($cookie);
+        Auth::logout(); // Cierra sesión en Laravel
+
+        // Invalidar la sesión completamente
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Eliminar la cookie del token si usas JWT
+        return response()->json(['message' => 'Logged out successfully'], 200)
+            ->withCookie(Cookie::forget('auth_token'));
     }
 }

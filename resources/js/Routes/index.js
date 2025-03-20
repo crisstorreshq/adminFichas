@@ -1,11 +1,12 @@
-import { PersonAdd, Abc, AccessTimeFilledSharp } from '@mui/icons-material'
+import { Abc } from '@mui/icons-material'
+// import { PersonAdd, Abc, AccessTimeFilledSharp } from '@mui/icons-material'
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
 
 const index = () => {
 
     const actions = [
-        // { id: 0, name: 'Agregar', icon: <PersonAdd/>, url:'/add-ausen' },
+        { id: 0, name: 'Listado de Pacientes', icon: <Abc/>, url:'/' },
         // { id: 1, name: 'Todos', icon: <Abc/>, url:'all' },
         // { id: 2, name: 'Reporte', icon: <AccessTimeFilledSharp/>, url:'report' }
     ]

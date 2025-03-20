@@ -10,30 +10,27 @@ const NavListDrawer = ({ auth }) => {
 
     const open = Boolean(anchorEl)
     
-    const {Segu_Usr_Nombre, Segu_Usr_ApellidoPaterno, Segu_Usr_ApellidoMaterno} = auth.user.nombre
+    const {Segu_Usr_Nombre, Segu_Usr_ApellidoPaterno, Segu_Usr_ApellidoMaterno} = auth.usuarios
 
     const dataUser = {
         name: `${Segu_Usr_Nombre} ${Segu_Usr_ApellidoPaterno} ${Segu_Usr_ApellidoMaterno}`,
         prof: "Desarrollador",
-        unidad: auth.user.unidad.servicio
+        unidad: auth.perfil.unidad.servicio || ""
     }
 
-    const onLogoutClick = (e) => {
-        e.preventDefault()
-        api.logout()
-            .then(response => {
-                window.location.reload();
-                window.location.href = '/login';
-            })
-            .catch(error => {
-                window.location.reload();
-                window.location.href = '/login';
-            })
-            .then(response => {
-                window.location.reload();
-                window.location.href = '/login';
-            })
-    }
+    const onLogoutClick = async (e) => {
+        e.preventDefault();
+    
+        try {
+            await api.logout();
+            
+            document.cookie = "auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    
+            window.location.replace('/');
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
+    };
 
     function stringToColor(string) {
         let hash = 0;
@@ -100,7 +97,7 @@ const NavListDrawer = ({ auth }) => {
             <Typography variant="caption" display="block" gutterBottom ml={2} mt={2}> Menú </Typography>
             <nav>
                 <List >
-                    <Routes auth={auth}/>
+                    <Routes/>
                 </List>
             </nav>
         </Box>

@@ -9,7 +9,6 @@ use App\Models\Pacientes;
 use App\Models\Carpeta;
 use Illuminate\Validation\Rule;
 
-
 class FichasController extends Controller
 {
     // Listado de Fichas del FTP

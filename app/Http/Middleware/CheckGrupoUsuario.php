@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Log;
+use Auth;
 
 class CheckGrupoUsuario
 {
@@ -22,6 +23,7 @@ class CheckGrupoUsuario
         try {
             JWTAuth::setToken($token);
             $user = JWTAuth::authenticate();
+            \Illuminate\Support\Facades\Auth::setUser($user);
         } catch (\Exception $e) {
             return redirect()
             ->route('sinPermisos.index')
