@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Token extends Model
 {
     protected $table = 'auth_remember_token';
+    protected $connection = 'sqlsrv';
 
     protected $primaryKey = 'id_user';
 
     protected $fillable = [
-         'remember_token', 'id_user', 'id_servicio', 'id_profesional'
+        'id',
+        'username',
+        'remember_token',
+        'id_servicio',
+        'id_profesional',
+        'id_especialidad',
     ];
 
     protected $hidden = [
@@ -29,5 +35,11 @@ class Token extends Model
     {
         return $this->belongsTo(ProfesionUser::class, 'id_profesional', 'id');
     }
+
+    protected $casts = [
+        'username' => 'string',
+        'id_servicio' => 'int',
+        'id_profesional' => 'int',
+    ];
 
 }

@@ -35,6 +35,23 @@ return [
 
     'connections' => [
 
+        'sqlsrvUsers' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL_Users'),
+            'host' => env('DB_HOST_Users', 'localhost'),
+            'port' => env('DB_PORT_Users', ''),
+            'database' => env('DB_DATABASE_Users', 'forge'),
+            'username' => env('DB_USERNAME_Users', 'forge'),
+            'password' => env('DB_PASSWORD_Users', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => false, // Importante: cambiar a false para SQL Server
+            'options' => [
+                PDO::ATTR_STRINGIFY_FETCHES => true,
+            ],
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),

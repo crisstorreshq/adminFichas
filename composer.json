@@ -16,7 +16,8 @@
         "psr/log": "^1.1",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.6",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

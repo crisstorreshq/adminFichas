@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sistemas extends Model
 {
+    protected $connection = 'sqlsrv';
     protected $table = 'sistemas';
 
     protected $primaryKey = 'id';

@@ -7,6 +7,8 @@ use DateTime;
 
 class Pacientes extends Model
 {
+    protected $connection = 'sqlsrv';
+
     protected $table = 'PAC_Paciente';
 
 	protected $primaryKey = 'PAC_PAC_Numero';

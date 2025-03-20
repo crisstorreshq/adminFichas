@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carpeta extends Model
 {
+    protected $connection = 'sqlsrv';
+
     protected $table = 'PAC_Carpeta';
 
 	protected $primaryKey = 'PAC_PAC_Numero';

@@ -10,6 +10,8 @@ class User extends Authenticatable
     //use HasApiTokens, HasFactory, Notifiable;
     use Notifiable;
 
+    protected $connection = 'sqlsrv';
+
     protected $primaryKey = 'principal_id';
 
     protected $table = 'sys.sql_logins';
