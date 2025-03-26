@@ -1,8 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\FichasController;
-use App\Http\Controllers\FichaDigitalizadaController;
+use App\Http\Controllers\AdquisicionController;
+use App\Http\Controllers\InsumoController;
+use App\Http\Controllers\DespachoController;
+use App\Http\Controllers\DespachoItemController;
 use App\Http\Controllers\AuthController;
 
 Route::get('api/sin-permisos', function () {
@@ -11,15 +13,13 @@ Route::get('api/sin-permisos', function () {
 
 Route::post('api/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['jwt.auth', 'check.group']], function ()
+Route::group(['middleware' => ['web.jwt']], function ()
 {
     Route::get('/', function () {
-        return Inertia::render('Dashboard', [
-            'auth' => Auth::user()
-        ]);
+        return Inertia::render('Dashboard');
     });
-    
-    Route::get('/vistaficha/{id}', [FichasController::class, 'verFicha']);
-    Route::post('/asignar-ficha', [FichasController::class, 'asignarFicha']);
-    Route::post('/digitalizar-ficha', [FichaDigitalizadaController::class, 'store']);
+    Route::resource('adquisiciones', AdquisicionController::class);
+    Route::resource('insumos', InsumoController::class);
+    Route::resource('despachos', DespachoController::class);
+    Route::resource('despacho-items', DespachoItemController::class);
 });

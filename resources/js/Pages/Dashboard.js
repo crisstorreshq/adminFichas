@@ -8,8 +8,6 @@ import CardComponent from '@/Components/Card/CardComponent';
 import CardHeader from '@/Components/Card/CardHeader';
 import CardContent from '@/Components/Card/CardContent';
 
-import PacientesTable from './PacienteTabla';
-
 const breadcrumbs = [
     { label: "Inicio", isActive: true },
 ];
@@ -21,7 +19,6 @@ export default function Dashboard(props) {
                 <CardComponent>
                     <CardHeader title={"Lista de Pacientes"} subTitle={"Filtra por RUT o Ficha"} />
                     <CardContent>
-                        <PacientesTable />
                     </CardContent>
                 </CardComponent>
             </PageContainer>

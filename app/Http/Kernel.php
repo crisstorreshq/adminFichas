@@ -47,6 +47,17 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'web.jwt' => [
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\HandleInertiaRequests::class,
+            \App\Http\Middleware\JWTFromCookie::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'jwt.auth',
+            'check.group',
+        ],
     ];
 
     /**
